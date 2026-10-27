@@ -27,8 +27,8 @@ export default function SectionHeading({
     };
 
     const headingSize = {
-        h2: "text-3xl sm:text-4xl lg:text-5xl",
-        h3: "text-2xl sm:text-3xl lg:text-4xl",
+        h2: "text-2xl sm:text-4xl lg:text-5xl",
+        h3: "text-xl sm:text-3xl lg:text-4xl",
     };
 
 
@@ -65,7 +65,7 @@ export default function SectionHeading({
                 />
 
                 <p
-                    className={`relative px-3 py-0.5 text-xs  uppercase  !text-[#fff] sm:text-sm`}
+                    className={`relative px-3 py-0.5 !text-xs  uppercase  !text-[#fff] sm:text-sm`}
                 >
                     {label}
                 </p>
