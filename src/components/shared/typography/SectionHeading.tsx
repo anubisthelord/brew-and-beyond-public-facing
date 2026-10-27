@@ -38,7 +38,7 @@ type SectionHeadingProps = {
         label: "!text-[#329D94]",
         title: "!text-[#181D23]",
         description: "!text-[#626970]",
-        highlight: "text-[#E8B957]",
+        highlight: "text-[#258B83]",
       },
       dark: {
         label: "!text-[#45C3B8]",
@@ -50,7 +50,7 @@ type SectionHeadingProps = {
         label: "!text-[#B7DCCF]",
         title: "!text-white",
         description: "!text-[#F1F3F5]",
-        highlight: "text-[#D9A441]",
+        highlight: "text-[#B7DCCF]",
       },
     };
   
