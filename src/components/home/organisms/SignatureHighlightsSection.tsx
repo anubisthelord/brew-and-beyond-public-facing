@@ -56,7 +56,7 @@ export default function SignatureHighlightsSection() {
   ]}
   description="Thoughtfully brewed coffee and a welcoming space to slow down."
   variant="dark"
-  align="center"
+  align="left"
 />
           </div>
 
