@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -19,13 +18,6 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import {
-  FaBolt,
-  FaMapMarkerAlt,
-  FaMugHot,
-  FaNewspaper,
-  FaInfoCircle,
-} from "react-icons/fa";
 
 // ======================================================
 // TYPES
@@ -58,7 +50,6 @@ type MenuName = "shop" | "cafe";
 
 // ======================================================
 // NAVIGATION DATA
-// One source of truth for desktop and mobile.
 // ======================================================
 
 const SHOP_DATA: NavSection = {
@@ -176,24 +167,22 @@ const PROMOS: PromoCardData[] = [
   },
 ];
 
-const PRIMARY_LINKS = [
-  { label: "WHERE TO FIND US", href: "/locations", icon: FaMapMarkerAlt },
-  { label: "NEWS BOARD", href: "/news", icon: FaNewspaper },
-  { label: "ABOUT", href: "/about", icon: FaInfoCircle },
+const PRIMARY_LINKS: LinkItem[] = [
+  { label: "WHERE TO FIND US", href: "/locations" },
+  { label: "JOURNAL", href: "/news" },
+  { label: "ABOUT", href: "/about" },
 ];
 
 const MENU_ITEMS: Record<
   MenuName,
-  { label: string; icon: typeof FaBolt; data: NavSection }
+  { label: string; data: NavSection }
 > = {
   shop: {
     label: "SHOP ONLINE",
-    icon: FaBolt,
     data: SHOP_DATA,
   },
   cafe: {
     label: "CAFE MENUS",
-    icon: FaMugHot,
     data: CAFE_DATA,
   },
 };
@@ -220,28 +209,22 @@ const utilityButtonStyle =
 function NavigationLink({
   href,
   label,
-  icon: Icon,
 }: {
   href: string;
   label: string;
-  icon: typeof FaBolt;
 }) {
   return (
     <Link
       href={href}
       className={
-        "inline-flex min-h-10 items-center gap-2 whitespace-nowrap " +
+        "inline-flex min-h-10 items-center whitespace-nowrap " +
         "rounded-md px-2 text-[13px] font-medium tracking-wide " +
         "text-white transition-colors duration-150 " +
         "hover:text-[var(--color-nav-accent)] " +
         focusStyle
       }
     >
-      <Icon
-        aria-hidden="true"
-        className="size-4 shrink-0 text-[var(--color-nav-accent)]"
-      />
-      <span>{label}</span>
+      {label}
     </Link>
   );
 }
@@ -249,7 +232,6 @@ function NavigationLink({
 function DropdownTrigger({
   menu,
   label,
-  icon: Icon,
   isActive,
   panelId,
   buttonRef,
@@ -258,7 +240,6 @@ function DropdownTrigger({
 }: {
   menu: MenuName;
   label: string;
-  icon: typeof FaBolt;
   isActive: boolean;
   panelId: string;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
@@ -284,16 +265,6 @@ function DropdownTrigger({
         focusStyle
       }
     >
-      <Icon
-        aria-hidden="true"
-        className={
-          "size-4 shrink-0 transition-transform duration-200 " +
-          (isActive
-            ? "scale-105 text-[var(--color-nav-accent)]"
-            : "text-[var(--color-nav-icon)] group-hover:scale-105")
-        }
-      />
-
       <span>{label}</span>
 
       <ChevronDown
@@ -302,7 +273,7 @@ function DropdownTrigger({
           "size-3.5 shrink-0 transition-transform duration-200 " +
           (isActive
             ? "rotate-180 text-[var(--color-nav-accent)]"
-            : "text-white/60")
+            : "text-white/60 group-hover:text-[var(--color-nav-accent)]")
         }
       />
     </button>
@@ -381,54 +352,48 @@ function PromoCard({ promo }: { promo: PromoCardData }) {
   );
 }
 
+
 function UtilityActions({
   cartCount,
 }: {
   cartCount: number;
 }) {
+  const count = Number.isFinite(cartCount)
+    ? Math.max(0, Math.floor(cartCount))
+    : 0;
+
   return (
-    <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-      <Link
-        href="/account"
-        aria-label="Account"
-        title="Account"
-        className={utilityButtonStyle}
-      >
-        <User aria-hidden="true" className="size-5" />
-      </Link>
+    <Link
+      href="/cart"
+      aria-label={`Shopping bag, ${count} items`}
+      title="Shopping bag"
+      className={
+        "relative inline-flex size-10 shrink-0 items-center justify-center " +
+        "rounded-md text-white transition-colors duration-200 " +
+        "hover:text-[var(--color-nav-accent)] " +
+        focusStyle
+      }
+    >
+      <ShoppingCart
+        aria-hidden="true"
+        className="size-5"
+      />
 
-      <Link
-        href="/search"
-        aria-label="Search"
-        title="Search"
-        className={utilityButtonStyle}
-      >
-        <Search aria-hidden="true" className="size-5" />
-      </Link>
-
-      <Link
-        href="/cart"
-        aria-label={`Shopping cart, ${cartCount} items`}
-        title="Shopping cart"
-        className={
-          "inline-flex min-h-10 shrink-0 items-center justify-center gap-1 " +
-          "rounded-md px-1 text-white transition-colors " +
-          "hover:text-[var(--color-nav-accent)] " +
-          focusStyle
-        }
-      >
-        <ShoppingCart aria-hidden="true" className="size-5" />
-
+      {count > 0 && (
         <span
           aria-hidden="true"
-          className="text-sm font-semibold tabular-nums text-[var(--color-nav-accent)]"
+          className={
+            "absolute right-0.5 top-0.5 flex size-4 items-center justify-center " +
+            "rounded-full bg-[var(--color-nav-accent)] text-[10px] font-semibold text-[#181D23]"
+          }
         >
-          ({cartCount})
+          {count > 99 ? "99+" : count}
         </span>
-      </Link>
-    </div>
+      )}
+    </Link>
   );
 }
+
 
 // ======================================================
 // DESKTOP MEGA MENU
@@ -451,7 +416,9 @@ function MegaMenu({
     <div
       id={panelId}
       aria-label={
-        activeMenu ? `${MENU_ITEMS[activeMenu].label} navigation` : undefined
+        activeMenu
+          ? `${MENU_ITEMS[activeMenu].label} navigation`
+          : undefined
       }
       aria-hidden={activeMenu === null}
       onMouseEnter={onMouseEnter}
@@ -685,32 +652,26 @@ function MobileNavigation({
         />
 
         <nav aria-label="Main pages" className="pt-2">
-          {PRIMARY_LINKS.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={
-                  "flex min-h-12 items-center gap-3 border-b " +
-                  "border-white/10 py-3 text-sm font-medium " +
-                  "text-white transition-colors hover:text-[var(--color-nav-accent)] " +
-                  focusStyle
-                }
-              >
-                <Icon
-                  aria-hidden="true"
-                  className="size-4 shrink-0 text-[var(--color-nav-accent)]"
-                />
-                {item.label}
-              </Link>
-            );
-          })}
+          {PRIMARY_LINKS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className={
+                "flex min-h-12 items-center border-b " +
+                "border-white/10 py-3 text-sm font-medium " +
+                "text-white transition-colors hover:text-[var(--color-nav-accent)] " +
+                focusStyle
+              }
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <Link
           href="/account"
+          onClick={onClose}
           className={
             "flex min-h-12 items-center gap-3 py-3 text-sm font-medium " +
             "text-[var(--color-nav-muted)] hover:text-white " +
@@ -723,6 +684,7 @@ function MobileNavigation({
 
         <Link
           href="/search"
+          onClick={onClose}
           className={
             "flex min-h-12 items-center gap-3 py-3 text-sm font-medium " +
             "text-[var(--color-nav-muted)] hover:text-white " +
@@ -735,6 +697,7 @@ function MobileNavigation({
 
         <Link
           href="/cart"
+          onClick={onClose}
           className={
             "flex min-h-12 items-center gap-3 py-3 text-sm font-medium " +
             "text-[var(--color-nav-muted)] hover:text-white " +
@@ -890,20 +853,20 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed inset-x-0 top-2.5 z-50 flex justify-center px-3 sm:px-4 md:px-6 ">
+    <div className="fixed inset-x-0 top-2.5 z-50 flex justify-center px-3 sm:px-4 md:px-6">
       <header
         ref={headerRef}
         className="relative w-full max-w-7xl"
         onMouseLeave={scheduleDesktopClose}
       >
         {/* MAIN BAR */}
-        <div className="relative z-50 flex  items-center justify-between gap-3 rounded-md py-1 px-4 border border-white/10 bg-[var(--color-nav-bg)] ">
+        <div className="relative z-50 flex items-center justify-between gap-3 rounded-md border border-white/10 bg-[var(--color-nav-bg)] px-4 py-1">
           {/* LOGO */}
           <Link
             href="/"
             aria-label="B&B home"
             className={
-              "shrink-0 rounded-sm font-serif text-2xl font-medium " +
+              "shrink-0 rounded-sm font-serif text-xl font-medium " +
               "leading-none tracking-tight text-[var(--color-nav-accent)] " +
               focusStyle
             }
@@ -918,8 +881,7 @@ export default function Navbar() {
           >
             <DropdownTrigger
               menu="shop"
-              label="SHOP ONLINE"
-              icon={FaBolt}
+              label={MENU_ITEMS.shop.label}
               isActive={activeMenu === "shop"}
               panelId={panelId}
               buttonRef={shopTriggerRef}
@@ -930,13 +892,11 @@ export default function Navbar() {
             <NavigationLink
               href="/locations"
               label="WHERE TO FIND US"
-              icon={FaMapMarkerAlt}
             />
 
             <DropdownTrigger
               menu="cafe"
-              label="CAFE MENUS"
-              icon={FaMugHot}
+              label={MENU_ITEMS.cafe.label}
               isActive={activeMenu === "cafe"}
               panelId={panelId}
               buttonRef={cafeTriggerRef}
@@ -944,17 +904,9 @@ export default function Navbar() {
               onMouseEnter={openDesktopMenu}
             />
 
-            <NavigationLink
-              href="/news"
-              label="NEWS BOARD"
-              icon={FaNewspaper}
-            />
+            <NavigationLink href="/news" label="JOURNAL" />
 
-            <NavigationLink
-              href="/about"
-              label="ABOUT"
-              icon={FaInfoCircle}
-            />
+            <NavigationLink href="/about" label="ABOUT" />
           </nav>
 
           {/* UTILITY ACTIONS + MOBILE TOGGLE */}
