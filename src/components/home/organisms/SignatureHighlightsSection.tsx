@@ -59,7 +59,7 @@ export default function SignatureHighlightsSection() {
             <Button
               href="#full-menu"
               variant="primary"
-              size="md"
+              size="lg"
             >
               Explore full menu
               <span aria-hidden="true">↗</span>
