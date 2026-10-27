@@ -107,10 +107,11 @@ export default function SectionHeading({
             {" "}
             <RotatingText
               texts={rotatingTexts}
-              effect="slide"
+              effect="drop"
               direction="up"
               rotationInterval={3000}
               staggerDuration={0.015}
+              staggerFrom="random"
               highlight={true}
               auto
               mainClassName={`inline-flex !text-4xl align-baseline ${headingSize[as]} !font-medium !leading-[1.125] !tracking-tight ${color.highlight}`}
