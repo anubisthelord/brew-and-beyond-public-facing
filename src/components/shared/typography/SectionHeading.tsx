@@ -81,7 +81,7 @@ export default function SectionHeading({
 
             {description && (
                 <p
-                    className={`mt-1 sm:mt-2 max-w-2xl !text-sm !font-medium leading-snug sm:text-base ${color.description}`}
+                    className={`mt-1 sm:mt-2 max-w-2xl !text-sm !font-medium leading-snug sm:!text-base ${color.description}`}
                 >
                     {description}
                 </p>
