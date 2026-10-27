@@ -46,13 +46,18 @@ export default function SignatureHighlightsSection() {
         {/* Section heading */}
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div className="min-w-0 flex-1">
-            <SectionHeading
-              title="A few of our favorites."
-                highlight="favorites."
-              description="Thoughtfully made, beautifully served, and always worth another sip."
-              as="h2"
-              align="left"
-            />
+          <SectionHeading
+  label="OUR PHILOSOPHY"
+  title="Good coffee."
+  rotatingTexts={[
+    "Better moments.",
+    "Fresh beginnings.",
+    "Coffee breaks.",
+  ]}
+  description="Thoughtfully brewed coffee and a welcoming space to slow down."
+  variant="dark"
+  align="center"
+/>
           </div>
 
           <div className="shrink-0">
