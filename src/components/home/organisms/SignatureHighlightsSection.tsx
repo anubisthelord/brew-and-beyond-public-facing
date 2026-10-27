@@ -47,7 +47,6 @@ export default function SignatureHighlightsSection() {
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div className="min-w-0 flex-1">
             <SectionHeading
-              label="A Taste of B&B"
               title="A few of our favorites."
               description="Thoughtfully made, beautifully served, and always worth another sip."
               as="h2"
