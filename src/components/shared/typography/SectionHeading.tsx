@@ -65,7 +65,7 @@ export default function SectionHeading({
                 />
 
                 <p
-                    className={`relative px-3 sm:py-0.5 !text-[10px]  uppercase  !text-[#fff] sm:text-sm`}
+                    className={`relative px-3 sm:py-0.5 !text-[10px]  uppercase  !text-[#fff] sm:!text-sm`}
                 >
                     {label}
                 </p>
