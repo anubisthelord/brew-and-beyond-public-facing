@@ -218,7 +218,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
 
   const order = useMemo(() => {
     const total = elements.reduce((sum, word) => sum + word.characters.length, 0);
-    const shuffled = Array.from({ length: total }, (_, i) => i).sort(() => Math.random() - 0.5);
+    const shuffled = Array.from({ length: total }, (_, i) => i);
     return { total, shuffled };
   }, [elements]);
 
