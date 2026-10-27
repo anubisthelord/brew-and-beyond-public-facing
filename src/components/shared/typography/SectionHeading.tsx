@@ -65,7 +65,7 @@ export default function SectionHeading({
                 />
 
                 <p
-                    className={`relative px-3 py-0.5 !text-xs  uppercase  !text-[#fff] sm:text-sm`}
+                    className={`relative px-3 sm:py-0.5 !text-[10px]  uppercase  !text-[#fff] sm:text-sm`}
                 >
                     {label}
                 </p>
@@ -81,7 +81,7 @@ export default function SectionHeading({
 
             {description && (
                 <p
-                    className={`mt-2 max-w-2xl text-sm !font-medium leading-snug sm:text-base ${color.description}`}
+                    className={`mt-2 max-w-2xl !text-sm !font-medium leading-snug sm:text-base ${color.description}`}
                 >
                     {description}
                 </p>
