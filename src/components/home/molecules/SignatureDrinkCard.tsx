@@ -37,7 +37,7 @@ export default function SignatureDrinkCard({
                     {category}
                 </p>
 
-                <h4 className="lg:mt-1 text-base !font-medium leading-snug tracking-tight text-[#181D23] sm:text-lg lg:text-xl">
+                <h4 className="lg:mt-1 text-base  leading-snug tracking-tight text-[#181D23] sm:text-lg lg:text-xl">
                     {name}
                 </h4>
             </div>
