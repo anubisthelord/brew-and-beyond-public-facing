@@ -74,14 +74,14 @@ export default function SectionHeading({
 
 
             <HeadingTag
-                className={`mt-2.5 !font-medium ${headingSize[as]} !tracking-tight !leading-[1.125] ${color.title}`}
+                className={`mt-1.5 sm:mt-2.5 !font-medium ${headingSize[as]} !tracking-tight !leading-[1.125] ${color.title}`}
             >
                 {title}
             </HeadingTag>
 
             {description && (
                 <p
-                    className={`mt-2 max-w-2xl !text-sm !font-medium leading-snug sm:text-base ${color.description}`}
+                    className={`mt-1 sm:mt-2 max-w-2xl !text-sm !font-medium leading-snug sm:text-base ${color.description}`}
                 >
                     {description}
                 </p>
