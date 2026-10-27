@@ -1,26 +1,216 @@
-@import "tailwindcss";
+/* ==========================================================================
+   BREW & BEYOND | GLOBAL STYLESHEET (NEXT.JS INTEGRATION)
+   ========================================================================== */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+   @import "tailwindcss";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+   /* ==========================================================================
+      1. DESIGN TOKENS
+      ========================================================================== */
+   :root {
+       /* --- Color Palette --- */
+       --color-bg: #fffdeb;
+       --color-text: #1d1f27;
+       --color-muted: #5c5e66;
+       --color-accent-red: #db1e36;
+       --color-accent-red-hover: #b5182d;
+       --color-accent-teal: #45d2cf;
+       --color-surface: #ffffff;
+       --color-border: #f1e3c5;
+       --color-status-green: #789840;
+       
+       /* --- Typography (Linked to Next.js Font Variables) --- */
+       --font-display: 'Bobby Jones', var(--font-display-fallback), sans-serif;
+       --font-body: 'Brandon Grotesque', var(--font-body-fallback), sans-serif;
+       
+       --font-size-base: 18px;
+       --h1-size: clamp(3rem, 6vw, 5rem);
+       --h2-size: clamp(2rem, 3.5vw, 3rem);
+       --h3-size: clamp(1.25rem, 2vw, 1.75rem);
+       --h4-size: clamp(1.1rem, 1.5vw, 1.5rem);
+       --label-size: 0.875rem;
+       
+       --line-height-tight: 1.1;
+       --line-height-normal: 1.6;
+       
+       /* --- Motion --- */
+       --transition-fast: 0.2s ease;
+       --transition-smooth: 0.3s ease;
+       --transition-image: 0.5s ease;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+         /* B&B navbar surfaces */
+  --color-nav-bg: #181d23;
+  --color-nav-menu: #0f1115;
+  --color-nav-promo: #fffdeb;
+
+  /* Brand and interaction */
+  --color-nav-accent: #45c3b8;
+  --color-nav-icon: #D9A441;
+
+  /* Typography */
+  --color-nav-muted: #c4cbd2;
+
+  /* Borders */
+  --color-nav-border: rgb(255 255 255 / 10%);
+   }
+   
+   /* ==========================================================================
+      2. GLOBAL BASE
+      ========================================================================== */
+   body {
+       background-color: var(--color-bg);
+       color: var(--color-text);
+       font-family: var(--font-body);
+       font-size: var(--font-size-base);
+       line-height: var(--line-height-normal);
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+       touch-action: manipulation;
+       overflow-x: hidden;
+       min-height: 100vh;
+       display: flex;
+       flex-direction: column;
+   }
+   
+   ::selection {
+       background-color: var(--color-border);
+       color: var(--color-text);
+   }
+   
+   /* ==========================================================================
+      3. TYPOGRAPHY
+      ========================================================================== */
+   h1, h2, h3, h4, h5, h6 {
+       font-family: var(--font-display);
+       font-weight: 400;
+       line-height: var(--line-height-tight);
+       color: var(--color-text);
+       text-wrap: balance;
+   }
+   
+   h1 { font-size: var(--h1-size); }
+   h2 { font-size: var(--h2-size); }
+   h3 { font-size: var(--h3-size); }
+   h4 { font-size: var(--h4-size); }
+   
+   p {
+       color: var(--color-muted);
+       overflow-wrap: break-word;
+   }
+   
+   .label {
+       font-family: var(--font-body);
+       font-size: var(--label-size);
+       font-weight: 700;
+       text-transform: uppercase;
+       letter-spacing: 0.05em;
+   }
+   
+   .text-accent { color: var(--color-accent-red); }
+   .text-teal { color: var(--color-accent-teal); }
+   .text-muted { color: var(--color-muted); }
+   
+   /* ==========================================================================
+      5. COMPONENTS: Buttons
+      ========================================================================== */
+   .btn {
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       gap: 0.5rem;
+       font-family: var(--font-body);
+       font-size: 1rem;
+       font-weight: 700;
+       text-transform: uppercase;
+       letter-spacing: 0.05em;
+       text-decoration: none;
+       cursor: pointer;
+       border: 2px solid transparent;
+       border-radius: 0;
+       transition: all var(--transition-fast);
+       line-height: 1.2;
+       text-align: center;
+   }
+   
+   .btn:active { transform: scale(0.98); }
+   
+   .btn:focus-visible {
+       outline: 2px solid var(--color-text);
+       outline-offset: 3px;
+   }
+   
+   .btn-primary {
+       background-color: var(--color-accent-red);
+       color: var(--color-bg);
+   }
+   .btn-primary:hover {
+       background-color: var(--color-accent-red-hover);
+       transform: translateY(-2px);
+   }
+   
+   .btn-secondary {
+       background-color: transparent;
+       color: var(--color-text);
+       border-color: var(--color-text);
+   }
+   .btn-secondary:hover {
+       background-color: var(--color-text);
+       color: var(--color-bg);
+   }
+   
+   .btn-filter {
+       background-color: transparent;
+       color: var(--color-muted);
+       border: 1px solid var(--color-border);
+       border-radius: 999px;
+       font-size: var(--label-size);
+   }
+   .btn-filter:hover,
+   .btn-filter.active {
+       background-color: var(--color-text);
+       color: var(--color-bg);
+       border-color: var(--color-text);
+   }
+
+
+
+   /* ==========================================================================
+   CUSTOM PROMO CARD: OLD SCRIPT PAPER (BULLETPROOF FIX)
+   ========================================================================== */
+
+
+   @keyframes labelIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+  
+  .animate-label-in {
+    animation: labelIn 600ms ease-out both;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .animate-label-in {
+      animation: none;
+    }
+  }
+  
+
+  /* Hide scrollbar across the entire website */
+html,
+body,
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
