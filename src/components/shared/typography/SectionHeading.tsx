@@ -38,7 +38,7 @@ type SectionHeadingProps = {
         label: "!text-[#329D94]",
         title: "!text-[#181D23]",
         description: "!text-[#626970]",
-        highlight: "text-[#258B83]",
+        highlight: "text-[#E8B957]",
       },
       dark: {
         label: "!text-[#45C3B8]",
@@ -50,10 +50,32 @@ type SectionHeadingProps = {
         label: "!text-[#B7DCCF]",
         title: "!text-white",
         description: "!text-[#F1F3F5]",
-        highlight: "text-[#B7DCCF]",
+        highlight: "text-[#D9A441]",
       },
     };
   
+
+
+    // const colors = {
+    //     light: {
+    //       label: "!text-[#329D94]",
+    //       title: "!text-[#181D23]",
+    //       description: "!text-[#626970]",
+    //       highlight: "text-[#258B83]",
+    //     },
+    //     dark: {
+    //       label: "!text-[#45C3B8]",
+    //       title: "!text-[#FFF5E6]",
+    //       description: "!text-[#C4CBD2]",
+    //       highlight: "text-[#45C3B8]",
+    //     },
+    //     white: {
+    //       label: "!text-[#B7DCCF]",
+    //       title: "!text-white",
+    //       description: "!text-[#F1F3F5]",
+    //       highlight: "text-[#B7DCCF]",
+    //     },
+    //   };
     const color = colors[variant];
   
     const renderTitle = () => {
