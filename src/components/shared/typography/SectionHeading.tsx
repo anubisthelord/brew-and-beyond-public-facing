@@ -2,6 +2,7 @@
 type SectionHeadingProps = {
     label?: string;
     title: string;
+    highlight?: string;
     description?: string;
     as?: "h2" | "h3";
     align?: "left" | "center" | "right";
@@ -12,6 +13,7 @@ type SectionHeadingProps = {
   export default function SectionHeading({
     label,
     title,
+    highlight,
     description,
     as = "h2",
     align = "left",
@@ -36,20 +38,40 @@ type SectionHeadingProps = {
         label: "!text-[#329D94]",
         title: "!text-[#181D23]",
         description: "!text-[#626970]",
+        highlight: "text-[#D9A441]",
       },
       dark: {
         label: "!text-[#45C3B8]",
         title: "!text-[#FFF5E6]",
         description: "!text-[#C4CBD2]",
+        highlight: "text-[#45C3B8]",
       },
       white: {
         label: "!text-[#B7DCCF]",
         title: "!text-white",
         description: "!text-[#F1F3F5]",
+        highlight: "text-[#D9A441]",
       },
     };
   
     const color = colors[variant];
+  
+    const renderTitle = () => {
+      if (!highlight || !title.includes(highlight)) {
+        return title;
+      }
+  
+      const parts = title.split(highlight);
+  
+      return parts.map((part, index) => (
+        <span key={index}>
+          {part}
+          {index < parts.length - 1 && (
+            <span className={color.highlight}>{highlight}</span>
+          )}
+        </span>
+      ));
+    };
   
     return (
       <div
@@ -61,8 +83,7 @@ type SectionHeadingProps = {
               aria-hidden="true"
               className="absolute inset-0 -skew-x-12 rounded-sm bg-[#D9A441]"
             />
-  
-            <p className="relative px-3 sm:py-0.5 !text-[10px] uppercase !text-[#fff] sm:!text-sm">
+            <p className="relative px-3 sm:py-0.5 !text-[10px] uppercase !text-white sm:!text-sm">
               {label}
             </p>
           </div>
@@ -73,13 +94,13 @@ type SectionHeadingProps = {
             label ? "mt-1.5 sm:mt-2.5" : "mt-0"
           } !font-medium ${headingSize[as]} !tracking-tight !leading-[1.125] ${color.title}`}
         >
-          {title}
+          {renderTitle()}
         </HeadingTag>
   
         {description && (
           <p
             className={`${
-              label ? "mt-1" : "mt-1.5"
+              label ? "mt-1" : "mt-2"
             } max-w-2xl !text-sm !font-medium leading-snug sm:!text-base ${color.description}`}
           >
             {description}
