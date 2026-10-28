@@ -38,43 +38,43 @@ export default function ContactUsSection() {
             <div className="absolute inset-0 bg-black/40" />
             
             {/* Info Overlay on the Image */}
-            <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12 z-10">
+            <div className="absolute inset-0 flex flex-col justify-between p-8  z-10">
               <div>
-                <h3 className="text-2xl font-serif text-white mb-2">Get in touch.</h3>
-                <p className="text-white/80 text-sm max-w-xs">
+                <h3 className="text-2xl font-serif !text-white mb-2">Get in touch.</h3>
+                <p className="!text-white/80 text-base max-w-sm">
                   We're here to answer any questions you might have about our space, menu, or events.
                 </p>
               </div>
 
               {/* Contact Details */}
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-white">
-                  <div className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <div className="flex items-center gap-4 !text-white">
+                  <div className="h-10 w-10 rounded bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-white/60 mb-0.5">Location</p>
-                    <p className="text-sm font-medium">45.5152° N, 122.6784° W</p>
+                    <p className="text-[10px] font-mono uppercase tracking-widest !text-white mb-0.5">Location</p>
+                    <p className="text-sm font-medium !text-white">45.5152° N, 122.6784° W</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-white">
-                  <div className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <div className="flex items-center gap-4 !text-white">
+                  <div className="h-10 w-10 rounded bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-white/60 mb-0.5">Phone</p>
-                    <p className="text-sm font-medium">+1 (555) 123-4567</p>
+                    <p className="text-[10px] font-mono uppercase tracking-widest !text-white mb-0.5">Phone</p>
+                    <p className="text-sm font-medium !text-white">+1 (555) 123-4567</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-white">
-                  <div className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <div className="flex items-center gap-4 !text-white">
+                  <div className="h-10 w-10 rounded bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-white/60 mb-0.5">Email</p>
-                    <p className="text-sm font-medium">hello@brewandbeyond.com</p>
+                    <p className="text-[10px] font-mono uppercase tracking-widest !text-white mb-0.5">Email</p>
+                    <p className="text-sm font-medium !text-white">hello@brewandbeyond.com</p>
                   </div>
                 </div>
               </div>
