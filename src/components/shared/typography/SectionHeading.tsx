@@ -1,15 +1,13 @@
-
 "use client";
 
 import RotatingText from "./RotatingText";
-
 
 type SectionHeadingProps = {
   label?: string;
   title: string;
   highlight?: string;
   rotatingTexts?: string[];
-  description?: string;
+  description?: string | string[]; // 👈 Updated to accept array
   as?: "h2" | "h3";
   align?: "left" | "center" | "right";
   variant?: "light" | "dark" | "white";
@@ -108,15 +106,13 @@ export default function SectionHeading({
             <RotatingText
               texts={rotatingTexts}
               effect="drop"
-           splitBy="charecters"
+              splitBy="charecters"
               rotationInterval={3000}
               staggerDuration={0.025}
               staggerFrom="random"
               highlight={true}
               auto
-              
               mainClassName={`inline-flex !text-4xl align-baseline ${headingSize[as]} !font-medium !leading-[1.125] !tracking-tight ${color.highlight}`}
-
               aria-label={rotatingTexts[0]}
             />
           </>
@@ -125,14 +121,30 @@ export default function SectionHeading({
         )}
       </HeadingTag>
 
+      {/* 👈 Updated Description Rendering */}
       {description && (
-        <p
+        <div
           className={`${
             label ? "mt-1" : "mt-2"
-          } max-w-2xl !text-sm !font-medium leading-snug sm:!text-base ${color.description}`}
+          } max-w-2xl flex flex-col gap-2 sm:gap-3`}
         >
-          {description}
-        </p>
+          {Array.isArray(description) ? (
+            description.map((paragraph, index) => (
+              <p
+                key={index}
+                className={`!text-sm !font-medium leading-snug sm:!text-base ${color.description}`}
+              >
+                {paragraph}
+              </p>
+            ))
+          ) : (
+            <p
+              className={`!text-sm !font-medium leading-snug sm:!text-base ${color.description}`}
+            >
+              {description}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );
