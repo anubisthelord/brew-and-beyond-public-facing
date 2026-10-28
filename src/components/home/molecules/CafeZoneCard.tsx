@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import { MapPin, Feather } from "lucide-react";
 import SectionHeading from "@/components/shared/typography/SectionHeading";
@@ -15,18 +16,14 @@ export interface ZoneCardProps {
     coordinates?: string;
     stampText?: string;
   };
-  index?: number;
 }
 
-export default function ZoneCard({ zone, index = 0 }: ZoneCardProps) {
+export default function ZoneCard({ zone }: ZoneCardProps) {
   // Fallbacks if the data doesn't pass them yet
   const date = zone.date || "October 24, 2026";
   const coordinates = zone.coordinates || "45.5152° N, 122.6784° W";
   const stampText = zone.stampText || "APPROVED • TEST KITCHEN";
   const subtitle = zone.subtitle || "Entry #042 • Artisan Bakery Section";
-
-  // Check if even or odd to swap layout
-  const isImageLeft = index % 2 === 0;
 
   return (
     <div className="relative w-full max-w-5xl mx-auto py-6 px-2 ">
@@ -103,125 +100,101 @@ export default function ZoneCard({ zone, index = 0 }: ZoneCardProps) {
         </div>
         {/* ==================== END BINDING ==================== */}
 
-        {/* ==================== LEFT SIDE ==================== */}
-        {isImageLeft ? (
-          // IMAGE ON LEFT
-          <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-full rounded-t-xl md:rounded-tr-none md:rounded-l-xl overflow-hidden bg-[#FAF8F2] z-10 flex flex-col p-6">
-            <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply bg-[radial-gradient(#000000_0.75px,transparent_0.75px)] [background-size:12px_12px]" />
-            <div className="absolute inset-0 shadow-[inset_-25px_0_35px_rgba(0,0,0,0.15)] pointer-events-none" />
+        {/* ==================== LEFT PAGE: UPDATED TO MATCH IMAGE ==================== */}
+        <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-full rounded-t-xl md:rounded-tr-none md:rounded-l-xl overflow-hidden bg-[#FAF8F2] z-10 flex flex-col p-6">
+          
+          {/* Dotted Paper Texture Background */}
+          <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply bg-[radial-gradient(#000000_0.75px,transparent_0.75px)] [background-size:12px_12px]" />
+
+          {/* Inner shadow simulating page curvature toward the center spine */}
+          <div className="absolute inset-0 shadow-[inset_-25px_0_35px_rgba(0,0,0,0.15)] pointer-events-none" />
+          
+          {/* TOP HEADER: Location & Date */}
+          <div className="relative z-10 flex items-center justify-between border-b border-black/10 pb-3 mb-4">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-3.5 h-3.5 text-[#8C4A27]" />
+              <span className="text-[11px] font-mono uppercase tracking-widest text-black/60">{coordinates}</span>
+            </div>
+            <span className="text-xs font-serif italic text-black/50">{date}</span>
+          </div>
+
+          {/* PHOTO CONTAINER (Polaroid Style) */}
+          <div className="relative my-auto group z-10 mx-auto w-full max-w-sm">
             
-            <div className="relative z-10 flex items-center justify-between border-b border-black/10 pb-3 mb-4">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#8C4A27]" />
-                <span className="text-[11px] font-mono uppercase tracking-widest text-black/60">{coordinates}</span>
-              </div>
-              <span className="text-xs font-serif italic text-black/50">{date}</span>
-            </div>
+            {/* Corner Tape Accents */}
+            <div className="absolute -top-3 -left-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-25deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
+            <div className="absolute -bottom-3 -right-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-15deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
 
-            <div className="relative my-auto group z-10 mx-auto w-full max-w-sm">
-              <div className="absolute -top-3 -left-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-25deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
-              <div className="absolute -bottom-3 -right-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-15deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
+            {/* Polaroid Frame */}
+            <div className="bg-white p-2.5 md:p-3 rounded-sm shadow-[0_10px_25px_rgba(0,0,0,0.15),0_2px_5px_rgba(0,0,0,0.1)] border border-[#E5DFD3] transform rotate-[-1deg] transition-transform duration-500 group-hover:rotate-0">
               
-              <div className="bg-white p-2.5 md:p-3 rounded-sm shadow-[0_10px_25px_rgba(0,0,0,0.15),0_2px_5px_rgba(0,0,0,0.1)] border border-[#E5DFD3] transform rotate-[-1deg] transition-transform duration-500 group-hover:rotate-0">
-                <div className="relative h-95 w-full overflow-hidden bg-[#2A241E] rounded-sm">
-                  <Image src={zone.image} alt={zone.title} fill sizes="(max-width: 168px) 100vw, 50vw" className="object-cover sepia-[0.2] contrast-[1.02] transition-transform duration-700 group-hover:scale-105 group-hover:sepia-0" priority />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-amber-950/20 via-transparent to-yellow-100/10 pointer-events-none" />
-                </div>
-                <div className="mt-2 text-center">
-                  <p className="font-serif italic text-[11px] text-[#4A3E35] tracking-wide">{subtitle}</p>
-                </div>
+              <div className="relative h-95 w-full overflow-hidden bg-[#2A241E] rounded-sm">
+                <Image
+                  src={zone.image}
+                  alt={zone.title}
+                  fill
+                  sizes="(max-width: 168px) 100vw, 50vw"
+                  className="object-cover sepia-[0.2] contrast-[1.02] transition-transform duration-700 group-hover:scale-105 group-hover:sepia-0"
+                  priority
+                />
+                {/* Photo Glare Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-amber-950/20 via-transparent to-yellow-100/10 pointer-events-none" />
               </div>
 
-              <div className="absolute -bottom-4 -left-2 z-30 pointer-events-none transform rotate-[-12deg]">
-                <div className="border-[1.5px] border-dashed border-[#8C4A27]/70 rounded-sm px-2.5 py-1 bg-[#FAF5E8]/90 text-[8px] font-mono font-bold text-[#8C4A27] tracking-wider uppercase shadow-sm">
-                  {stampText}
-                </div>
+              {/* Subtitle under photo */}
+              <div className="mt-2 text-center">
+                <p className="font-serif italic text-[11px] text-[#4A3E35] tracking-wide">{subtitle}</p>
               </div>
             </div>
 
-            <div className="relative z-10 mt-6 pt-3 border-t border-black/10 flex items-center justify-between text-[11px] text-black/50">
-              <span className="flex items-center gap-1 font-serif italic">
-                <Feather className="w-3 h-3" /> Field Journal Notes
-              </span>
-              <span>Page 41</span>
-            </div>
-          </div>
-        ) : (
-          // TEXT ON LEFT
-          <div className="relative w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between rounded-t-xl md:rounded-tr-none md:rounded-l-xl bg-[#FAF6EE] z-10">
-            <div className="absolute inset-y-0 right-0 w-12 shadow-[inset_25px_0_30px_-10px_rgba(0,0,0,0.18)] pointer-events-none" />
-            <div className="relative pr-0 md:pr-6 z-10 my-auto">
-              <SectionHeading title={zone.title} description={zone.description} variant="dark" align="left" as="h3" />
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                {zone.tags.map((tag) => (
-                  <span key={tag} className="rounded bg-[#EFE8D8] px-4 py-1 text-xs font-semibold text-[#4A4238] border border-[#DCD3C0] shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
-                    {tag}
-                  </span>
-                ))}
+            {/* Stamp */}
+            <div className="absolute -bottom-4 -left-2 z-30 pointer-events-none transform rotate-[-12deg]">
+              <div className="border-[1.5px] border-dashed border-[#8C4A27]/70 rounded-sm px-2.5 py-1 bg-[#FAF5E8]/90 text-[8px] font-mono font-bold text-[#8C4A27] tracking-wider uppercase shadow-sm">
+                {stampText}
               </div>
             </div>
           </div>
-        )}
 
-        {/* ==================== RIGHT SIDE ==================== */}
-        {!isImageLeft ? (
-          // IMAGE ON RIGHT
-          <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-full rounded-b-xl md:rounded-bl-none md:rounded-r-xl overflow-hidden bg-[#FAF8F2] z-10 flex flex-col p-6">
-            <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply bg-[radial-gradient(#000000_0.75px,transparent_0.75px)] [background-size:12px_12px]" />
-            <div className="absolute inset-0 shadow-[inset_25px_0_35px_rgba(0,0,0,0.15)] pointer-events-none" />
-            
-            <div className="relative z-10 flex items-center justify-between border-b border-black/10 pb-3 mb-4">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#8C4A27]" />
-                <span className="text-[11px] font-mono uppercase tracking-widest text-black/60">{coordinates}</span>
-              </div>
-              <span className="text-xs font-serif italic text-black/50">{date}</span>
-            </div>
+          {/* LEFT FOOTER */}
+          <div className="relative z-10 mt-6 pt-3 border-t border-black/10 flex items-center justify-between text-[11px] text-black/50">
+            <span className="flex items-center gap-1 font-serif italic">
+              <Feather className="w-3 h-3" /> Field Journal Notes
+            </span>
+            <span>Page 41</span>
+          </div>
+        </div>
+        {/* ==================== END LEFT PAGE ==================== */}
 
-            <div className="relative my-auto group z-10 mx-auto w-full max-w-sm">
-              <div className="absolute -top-3 -left-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-25deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
-              <div className="absolute -bottom-3 -right-3 w-12 h-6 bg-[#E8E0CE]/80 backdrop-blur-[1px] rotate-[-15deg] border-y border-white/50 shadow-sm z-30 pointer-events-none" />
-              
-              <div className="bg-white p-2.5 md:p-3 rounded-sm shadow-[0_10px_25px_rgba(0,0,0,0.15),0_2px_5px_rgba(0,0,0,0.1)] border border-[#E5DFD3] transform rotate-[-1deg] transition-transform duration-500 group-hover:rotate-0">
-                <div className="relative h-95 w-full overflow-hidden bg-[#2A241E] rounded-sm">
-                  <Image src={zone.image} alt={zone.title} fill sizes="(max-width: 168px) 100vw, 50vw" className="object-cover sepia-[0.2] contrast-[1.02] transition-transform duration-700 group-hover:scale-105 group-hover:sepia-0" priority />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-amber-950/20 via-transparent to-yellow-100/10 pointer-events-none" />
-                </div>
-                <div className="mt-2 text-center">
-                  <p className="font-serif italic text-[11px] text-[#4A3E35] tracking-wide">{subtitle}</p>
-                </div>
-              </div>
+        {/* RIGHT PAGE: Text Content Container with Realistic Paper Texture */}
+        <div className="relative w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between rounded-b-xl md:rounded-bl-none md:rounded-r-xl bg-[#FAF6EE] z-10">
+          
+          {/* Inner shadow along the spine fold */}
+          <div className="absolute inset-y-0 left-0 w-12 shadow-[inset_25px_0_30px_-10px_rgba(0,0,0,0.18)] pointer-events-none" />
 
-              <div className="absolute -bottom-4 -left-2 z-30 pointer-events-none transform rotate-[-12deg]">
-                <div className="border-[1.5px] border-dashed border-[#8C4A27]/70 rounded-sm px-2.5 py-1 bg-[#FAF5E8]/90 text-[8px] font-mono font-bold text-[#8C4A27] tracking-wider uppercase shadow-sm">
-                  {stampText}
-                </div>
-              </div>
-            </div>
+          {/* Content Wrapper */}
+          <div className="relative pl-0 md:pl-6 z-10 my-auto">
+            <SectionHeading
+              title={zone.title}
+              description={zone.description}
+              variant="dark"
+              align="left"
+              as="h3"
+            />
 
-            <div className="relative z-10 mt-6 pt-3 border-t border-black/10 flex items-center justify-between text-[11px] text-black/50">
-              <span className="flex items-center gap-1 font-serif italic">
-                <Feather className="w-3 h-3" /> Field Journal Notes
-              </span>
-              <span>Page 41</span>
+            {/* Tags / Pills */}
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {zone.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded bg-[#EFE8D8] px-4 py-1 text-xs font-semibold text-[#4A4238] border border-[#DCD3C0] shadow-[0_2px_4px_rgba(0,0,0,0.04)]"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
-        ) : (
-          // TEXT ON RIGHT
-          <div className="relative w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between rounded-b-xl md:rounded-bl-none md:rounded-r-xl bg-[#FAF6EE] z-10">
-            <div className="absolute inset-y-0 left-0 w-12 shadow-[inset_25px_0_30px_-10px_rgba(0,0,0,0.18)] pointer-events-none" />
-            <div className="relative pl-0 md:pl-6 z-10 my-auto">
-              <SectionHeading title={zone.title} description={zone.description} variant="dark" align="left" as="h3" />
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                {zone.tags.map((tag) => (
-                  <span key={tag} className="rounded bg-[#EFE8D8] px-4 py-1 text-xs font-semibold text-[#4A4238] border border-[#DCD3C0] shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+
+        </div>
 
       </div>
     </div>
