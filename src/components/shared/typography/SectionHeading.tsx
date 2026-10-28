@@ -43,8 +43,8 @@ export default function SectionHeading({
   const colors = {
     light: {
       label: "text-[#329D94]",
-      title: "text-[#181D23]",
-      description: "text-[#626970]",
+      title: "!text-[#fff]",
+      description: "!text-gray-400",
       highlight: "text-[#258B83]",
     },
     dark: {
@@ -108,12 +108,13 @@ export default function SectionHeading({
             <RotatingText
               texts={rotatingTexts}
               effect="drop"
-              direction="up"
+           splitBy="charecters"
               rotationInterval={3000}
-              staggerDuration={0.015}
+              staggerDuration={0.025}
               staggerFrom="random"
               highlight={true}
               auto
+              
               mainClassName={`inline-flex !text-4xl align-baseline ${headingSize[as]} !font-medium !leading-[1.125] !tracking-tight ${color.highlight}`}
 
               aria-label={rotatingTexts[0]}
