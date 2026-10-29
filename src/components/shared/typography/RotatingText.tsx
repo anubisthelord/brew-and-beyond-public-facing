@@ -154,7 +154,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
     effect = 'slide',
     direction = 'up',
     highlight = false,
-    highlightColor = '#D9A06D',
+    highlightColor = '#522E18',
     animatePresenceMode = 'wait',
     animatePresenceInitial = false,
     rotationInterval = 2000,
@@ -381,7 +381,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
       >
         <span className="sr-only">{texts[activeIndex]}</span>
         {highlight ? (
-          <span ref={contentRef} className="flex shrink-0 whitespace-pre">
+          <span ref={contentRef} className="flex shrink-0 whitespace-pre !text-white">
             {presence}
           </span>
         ) : (
