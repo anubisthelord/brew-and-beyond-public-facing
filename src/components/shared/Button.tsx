@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
@@ -24,18 +23,9 @@ type ActionButtonProps = CommonProps &
 
 type ButtonProps = LinkButtonProps | ActionButtonProps;
 
-// const variants: Record<ButtonVariant, string> = {
-//   primary:
-//     "!bg-[#45C3B8] !text-[#0F1115] hover:bg-[#35B3A8]",
-//   secondary:
-//     "border border-[#181D23]/25 bg-transparent !text-[#181D23] hover:border-[#45C3B8] hover:bg-[#45C3B8]/10",
-//   ghost:
-//     "!bg-transparent !text-[#181D23] hover:bg-[#181D23]/5",
-// };
-
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "!bg-[#D9A06D] !text-[#000] !font-medium hover:!bg-[#252B33] hover:!text-white ",
+    "!bg-[#D9A06D] !text-[#000] !font-medium hover:!bg-[#B77A48] hover:!text-white",
 
   secondary:
     "!border-[#181D23]/30 !bg-[#0F1115] !text-[#C4CBD2] hover:!border-[#454B54] hover:!bg-[#212830]",
@@ -53,7 +43,7 @@ const sizes: Record<ButtonSize, string> = {
 const baseStyles =
   "inline-flex items-center justify-center gap-2 rounded-md font-medium " +
   "transition-colors duration-200 " +
-  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#329D94] " +
+  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A06D] " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 export default function Button({
