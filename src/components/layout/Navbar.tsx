@@ -873,7 +873,7 @@ export default function Navbar() {
         }
       >
         {/* MAIN BAR */}
-        <div className="relative z-50 flex items-center justify-between gap-3 rounded-md border border-white/10 bg-[var(--color-nav-bg)] px-4 py-1">
+        <div className="relative z-50 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[var(--color-nav-bg)] px-4 py-1">
           {/* LOGO */}
           <Link
             href="/"
