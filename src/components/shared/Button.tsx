@@ -25,7 +25,7 @@ type ButtonProps = LinkButtonProps | ActionButtonProps;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "!bg-[#D9A06D] !text-[#000] !font-medium hover:!bg-[#B77A48] hover:!text-white",
+    "!bg-[#D9A06D] !text-[#000] !font-medium hover:!bg-[#C48750] ",
 
   secondary:
     "!border-[#181D23]/30 !bg-[#0F1115] !text-[#C4CBD2] hover:!border-[#454B54] hover:!bg-[#212830]",

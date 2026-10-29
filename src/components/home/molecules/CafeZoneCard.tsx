@@ -104,7 +104,7 @@ export default function ZoneCard({ zone }: ZoneCardProps) {
         <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-full rounded-t-xl md:rounded-tr-none md:rounded-l-xl overflow-hidden bg-[#FAF8F2] z-10 flex flex-col p-6">
           
           {/* Dotted Paper Texture Background */}
-          <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply bg-[radial-gradient(#000000_0.75px,transparent_0.75px)] [background-size:12px_12px]" />
+          {/* <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply bg-[radial-gradient(#000000_0.75px,transparent_0.75px)] [background-size:12px_12px]" /> */}
 
           {/* Inner shadow simulating page curvature toward the center spine */}
           <div className="absolute inset-0 shadow-[inset_-25px_0_35px_rgba(0,0,0,0.15)] pointer-events-none" />
