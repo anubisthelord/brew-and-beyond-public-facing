@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import SectionHeading from "@/components/shared/typography/SectionHeading";
 import MenuCard, { MenuItemType } from "../molecules/MenuCard";
+import Button from "@/components/shared/Button";
 
 // 20 Items to fill the grid
 export const menuItems: MenuItemType[] = [
@@ -39,7 +40,7 @@ export default function MenuSection() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 container mx-auto space-y-12 ">
+      <div className="relative z-10 container mx-auto space-y-12  ">
         
         {/* Top Center Header */}
         <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center">
@@ -52,7 +53,6 @@ export default function MenuSection() {
           />
         </div>
 
-        {/* Split Layout */}
         {/* Changed to items-stretch so the left image matches the height of the right grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
@@ -78,8 +78,8 @@ export default function MenuSection() {
 
           {/* Right Side: Grid */}
           <div className="lg:col-span-12">
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-7 gap-4">
-              {menuItems.slice(0,14).map((item) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+              {menuItems.slice(0,10).map((item) => (
                 <MenuCard 
                   key={item.id} 
                   item={item} 
@@ -89,7 +89,21 @@ export default function MenuSection() {
             </div>
           </div>
 
+          
+
         </div>
+
+         {/* Submit Button */}
+         <div className="shrink-0 w-full text-center">
+            <Button
+              href="Send Message"
+              variant="primary"
+              size="lg"
+            >
+              Explore full menu
+              <span aria-hidden="true">↗</span>
+            </Button>
+          </div>
       </div>
     </section>
   );

@@ -67,7 +67,7 @@ export default function MenuCard({ item, onClick }: MenuCardProps) {
       </div>
 
       {/* ==================== BOTTOM CONTENT (Price & Add to Cart) ==================== */}
-      <div className="flex flex-1 items-center justify-between  p-2">
+      <div className="flex flex-1 items-center justify-between  py-2.5 px-5">
         
         {/* Price */}
         <div className="flex flex-col">
@@ -79,10 +79,10 @@ export default function MenuCard({ item, onClick }: MenuCardProps) {
 
         {/* Add to Cart Button */}
         <button 
-          className="flex  items-center justify-center cursor-pointer rounded px-3 py-0.5 text-xs bg-[#a85] text-[#F9F8F4]  transition-all duration-300 hover:scale-110 hover:bg-[#A65A42]"
+          className="flex  items-center justify-center cursor-pointer rounded px-5 py-1.5 text-xs bg-[#a85] text-[#F9F8F4]  transition-all duration-300 hover:scale-110 hover:bg-[#A65A42]"
           aria-label={`Add ${item.name} to cart`}
         >
-           + Add
+           Add
          
         </button>
 
