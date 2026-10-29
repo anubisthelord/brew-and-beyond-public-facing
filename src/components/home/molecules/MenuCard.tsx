@@ -38,7 +38,7 @@ export default function MenuCard({ item, onClick }: MenuCardProps) {
             src={item.image}
             alt={item.name}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="!object-cover"
             // className="object-cover sepia-[0.35] contrast-[0.95] saturate-[0.85] transition-all duration-700 ease-out group-hover:scale-105 group-hover:sepia-0 group-hover:contrast-100 group-hover:saturate-100"
           />
 
