@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -35,7 +35,7 @@ type ButtonProps = LinkButtonProps | ActionButtonProps;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "!bg-[#D9A06D] !text-[#FFF5E6] hover:!bg-[#252B33]",
+    "!bg-[#D9A06D] !text-[#000] !font-medium hover:!bg-[#252B33] hover:!text-white ",
 
   secondary:
     "!border-[#181D23]/30 !bg-[#0F1115] !text-[#C4CBD2] hover:!border-[#454B54] hover:!bg-[#212830]",
