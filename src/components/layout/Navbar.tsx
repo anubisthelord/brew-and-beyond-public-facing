@@ -188,6 +188,13 @@ const MENU_ITEMS: Record<
 };
 
 // ======================================================
+// THEME — gold accent (#D9A06D) + dark text on gold
+// ======================================================
+
+const ACCENT = "#D9A06D";
+const ACCENT_TEXT = "#181D23"; // dark text placed on the gold accent
+
+// ======================================================
 // SHARED STYLES
 // ======================================================
 
@@ -858,6 +865,12 @@ export default function Navbar() {
         ref={headerRef}
         className="relative w-full max-w-7xl"
         onMouseLeave={scheduleDesktopClose}
+        style={
+          {
+            // Override the teal accent globally for this header.
+            "--color-nav-accent": ACCENT,
+          } as React.CSSProperties
+        }
       >
         {/* MAIN BAR */}
         <div className="relative z-50 flex items-center justify-between gap-3 rounded-md border border-white/10 bg-[var(--color-nav-bg)] px-4 py-1">

@@ -154,7 +154,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
     effect = 'slide',
     direction = 'up',
     highlight = false,
-    highlightColor = '#a855f7',
+    highlightColor = '#D9A06D',
     animatePresenceMode = 'wait',
     animatePresenceInitial = false,
     rotationInterval = 2000,
@@ -321,7 +321,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   const charStyle = effect === 'flip' ? FLIP_STYLE : undefined;
 
   const blockStyle = highlight
-    ? { ...style, width, backgroundColor: highlightColor, color: readableText(highlightColor) ?? style?.color }
+    ? { ...style, width, backgroundColor: highlightColor, color: style?.color ?? readableText(highlightColor) ?? '#0b0b0c' }
     : style;
 
   const presence = (
